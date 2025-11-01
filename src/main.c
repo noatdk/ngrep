@@ -59,9 +59,6 @@ void scanFile(char *path, char *target)
                 printf("\033[1;32m");
             }
             putchar(c);
-            if (i == last_char_index) {
-                printf("\n");
-            }
         }
     line_break:
         continue;
