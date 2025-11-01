@@ -91,6 +91,9 @@ int handlePath(char *path, char *keyword)
             if (strcmp(de->d_name, "..") != 0 && strcmp(de->d_name, ".")) {
                 strcpy(buf, path);
                 strcat(buf, "/");
+                if (strcmp(buf, "./") == 0) {
+                    strcpy(buf, "");
+                }
                 strcat(buf, de->d_name);
                 handlePath(buf, keyword);
             }
