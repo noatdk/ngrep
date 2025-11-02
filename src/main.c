@@ -1,5 +1,6 @@
 #include <dirent.h>
 #include <limits.h> //For PATH_MAX
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -21,23 +22,19 @@ void scanFile(char *path, char *target)
 
         char c;
         int match_index = 0;
-        int is_matching = 0;
         int found_indexes[1024];
         int found_count = 0;
         int last_char_index = 0;
         for (int i = 0; (c = line[i]) != '\0'; last_char_index = i++) {
             if (c == target[match_index]) {
-                is_matching = 1;
                 if (match_index == target_length - 1) {
                     found_indexes[found_count] = i - target_length + 1;
                     found_count++;
                     match_index = 0;
-                    is_matching = 0;
                 }
                 match_index++;
             } else {
                 match_index = 0;
-                is_matching = 0;
             }
         }
         if (found_count == 0) {
